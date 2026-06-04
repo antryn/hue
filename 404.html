@@ -7,7 +7,7 @@
       // GitHub Pages SPA fallback: encode the original path into ?p= and redirect
       // to index.html, which decodes it before the router boots.
       // Only needed for routes not prerendered (e.g. unknown paths).
-      var seg = 1; // number of sub-path segments, e.g. 1 for /hue/
+      var seg = 1; // replaced at build time from vite.config.ts GITHUB_PAGES_BASE
       var l = window.location;
       var base = l.pathname.split("/").slice(0, seg + 1).join("/");
       l.replace(
