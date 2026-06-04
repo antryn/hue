@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hue — Color Lookup</title>
+    <script>
+      // Decode the path that public/404.html encoded into ?p= so the router
+      // sees the correct URL before it boots.
+      (function () {
+        var p = new URLSearchParams(window.location.search).get("p");
+        if (p) {
+          var q = new URLSearchParams(window.location.search).get("q");
+          window.history.replaceState(
+            null,
+            "",
+            window.location.pathname.split("/").slice(0, 2).join("/") +
+              "/" +
+              decodeURIComponent(p) +
+              (q ? "?" + decodeURIComponent(q) : "") +
+              window.location.hash,
+          );
+        }
+      })();
+    </script>
+    <script type="module" crossorigin src="/hue/assets/index-Bbs17eVP.js"></script>
+    <link rel="stylesheet" crossorigin href="/hue/assets/index-BJbc-zXZ.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>

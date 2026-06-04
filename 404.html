@@ -4,22 +4,17 @@
     <meta charset="utf-8" />
     <title>Hue — Color Lookup</title>
     <script>
-      // GitHub Pages SPA redirect: encode the path into the query string so
-      // the server serves index.html, then index.html decodes and restores it.
+      // GitHub Pages SPA fallback: encode the original path into ?p= and redirect
+      // to index.html, which decodes it before the router boots.
+      // Only needed for routes not prerendered (e.g. unknown paths).
+      var seg = 1; // number of sub-path segments, e.g. 1 for /hue/
       var l = window.location;
+      var base = l.pathname.split("/").slice(0, seg + 1).join("/");
       l.replace(
-        l.protocol +
-          "//" +
-          l.hostname +
-          (l.port ? ":" + l.port : "") +
-          l.pathname
-            .split("/")
-            .slice(0, 1 + 1) // keep the sub-path segment count (1 = "/chroma-match")
-            .join("/") +
-          "/?p=" +
-          encodeURIComponent(
-            l.pathname.slice(1) + (l.search ? "&q=" + l.search.slice(1) : "") + l.hash,
-          ),
+        l.protocol + "//" + l.hostname + (l.port ? ":" + l.port : "") +
+        base + "/?p=" + encodeURIComponent(l.pathname.slice(base.length + 1)) +
+        (l.search ? "&q=" + encodeURIComponent(l.search.slice(1)) : "") +
+        l.hash
       );
     </script>
   </head>
